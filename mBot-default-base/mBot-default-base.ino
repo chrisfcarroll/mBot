@@ -147,13 +147,13 @@ void setup()
   rgb.clear();
   rgb.setColor(10, 0, 0);
   buzzer.tone(NTD1, 300); 
-  delay(300);
-  rgb.setColor(0, 10, 0);
+  delay(100);
+  rgb.setColor(0, 20, 0);
   buzzer.tone(NTD2, 300);
-  delay(300);
+  delay(400);
   rgb.setColor(0, 0, 10);
   buzzer.tone(NTD3, 300);
-  delay(300);
+  delay(100);
   rgb.clear();
   Serial.begin(115200);
   buzzer.noTone();
