@@ -1,0 +1,6 @@
+{
+    "terminal.integrated.env.osx": {
+        "PATH": "/Users/chris/.platformio/penv/bin:/Users/chris/.platformio/penv:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/share/dotnet:/usr/local/go/bin:/Library/Frameworks/Mono.framework/Versions/Current/Commands:/Applications/Postgres.app/Contents/Versions/latest/bin:/Applications/Xamarin Workbooks.app/Contents/SharedSupport/path-bin:/Users/chris/Applications:/Users/chris/Library/Python/3.6/bin",
+        "PLATFORMIO_CALLER": "vscode"
+    }
+}
