@@ -4,5 +4,10 @@
 # .vscode/c_cpp_properties.json
 # .vscode/launch.json
 .idea
-.DS_Store
-*.hex
+**/.DS_Store
+**/*.hex
+**/*.o
+**/*.a
+**/*.elf
+.pioenvs/.sconsign.dblite
+.vscode/.browse.c_cpp.db*
