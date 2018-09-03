@@ -43,10 +43,10 @@ RM = "/Users/chris/Library/Application Support/JetBrains/Toolbox/apps/CLion/ch-0
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /Users/chris/Source/Scratch/PlatformIO2
+CMAKE_SOURCE_DIR = "/Users/chris/Source/Repos/mBot PlatformIO/pio_clion"
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /Users/chris/Source/Scratch/PlatformIO2/cmake-build-debug
+CMAKE_BINARY_DIR = "/Users/chris/Source/Repos/mBot PlatformIO/pio_clion/cmake-build-debug"
 
 # Utility rule file for PLATFORMIO_UPLOADFS.
 
@@ -54,7 +54,7 @@ CMAKE_BINARY_DIR = /Users/chris/Source/Scratch/PlatformIO2/cmake-build-debug
 include CMakeFiles/PLATFORMIO_UPLOADFS.dir/progress.make
 
 CMakeFiles/PLATFORMIO_UPLOADFS:
-	cd /Users/chris/Source/Scratch/PlatformIO2 && /Users/chris/.platformio/penv/bin/platformio -f -c clion run --target uploadfs
+	cd "/Users/chris/Source/Repos/mBot PlatformIO/pio_clion" && /Users/chris/.platformio/penv/bin/platformio -f -c clion run --target uploadfs
 
 PLATFORMIO_UPLOADFS: CMakeFiles/PLATFORMIO_UPLOADFS
 PLATFORMIO_UPLOADFS: CMakeFiles/PLATFORMIO_UPLOADFS.dir/build.make
@@ -71,6 +71,6 @@ CMakeFiles/PLATFORMIO_UPLOADFS.dir/clean:
 .PHONY : CMakeFiles/PLATFORMIO_UPLOADFS.dir/clean
 
 CMakeFiles/PLATFORMIO_UPLOADFS.dir/depend:
-	cd /Users/chris/Source/Scratch/PlatformIO2/cmake-build-debug && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /Users/chris/Source/Scratch/PlatformIO2 /Users/chris/Source/Scratch/PlatformIO2 /Users/chris/Source/Scratch/PlatformIO2/cmake-build-debug /Users/chris/Source/Scratch/PlatformIO2/cmake-build-debug /Users/chris/Source/Scratch/PlatformIO2/cmake-build-debug/CMakeFiles/PLATFORMIO_UPLOADFS.dir/DependInfo.cmake --color=$(COLOR)
+	cd "/Users/chris/Source/Repos/mBot PlatformIO/pio_clion/cmake-build-debug" && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" "/Users/chris/Source/Repos/mBot PlatformIO/pio_clion" "/Users/chris/Source/Repos/mBot PlatformIO/pio_clion" "/Users/chris/Source/Repos/mBot PlatformIO/pio_clion/cmake-build-debug" "/Users/chris/Source/Repos/mBot PlatformIO/pio_clion/cmake-build-debug" "/Users/chris/Source/Repos/mBot PlatformIO/pio_clion/cmake-build-debug/CMakeFiles/PLATFORMIO_UPLOADFS.dir/DependInfo.cmake" --color=$(COLOR)
 .PHONY : CMakeFiles/PLATFORMIO_UPLOADFS.dir/depend
 

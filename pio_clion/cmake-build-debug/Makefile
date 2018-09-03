@@ -48,10 +48,10 @@ RM = "/Users/chris/Library/Application Support/JetBrains/Toolbox/apps/CLion/ch-0
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /Users/chris/Source/Scratch/PlatformIO2
+CMAKE_SOURCE_DIR = "/Users/chris/Source/Repos/mBot PlatformIO/pio_clion"
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /Users/chris/Source/Scratch/PlatformIO2/cmake-build-debug
+CMAKE_BINARY_DIR = "/Users/chris/Source/Repos/mBot PlatformIO/pio_clion/cmake-build-debug"
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -80,9 +80,9 @@ edit_cache/fast: edit_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/chris/Source/Scratch/PlatformIO2/cmake-build-debug/CMakeFiles /Users/chris/Source/Scratch/PlatformIO2/cmake-build-debug/CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start "/Users/chris/Source/Repos/mBot PlatformIO/pio_clion/cmake-build-debug/CMakeFiles" "/Users/chris/Source/Repos/mBot PlatformIO/pio_clion/cmake-build-debug/CMakeFiles/progress.marks"
 	$(MAKE) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/chris/Source/Scratch/PlatformIO2/cmake-build-debug/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start "/Users/chris/Source/Repos/mBot PlatformIO/pio_clion/cmake-build-debug/CMakeFiles" 0
 .PHONY : all
 
 # The main clean target
@@ -109,6 +109,19 @@ preinstall/fast:
 depend:
 	$(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
+
+#=============================================================================
+# Target rules for targets named pio_clion
+
+# Build rule for target.
+pio_clion: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 pio_clion
+.PHONY : pio_clion
+
+# fast build rule for target.
+pio_clion/fast:
+	$(MAKE) -f CMakeFiles/pio_clion.dir/build.make CMakeFiles/pio_clion.dir/build
+.PHONY : pio_clion/fast
 
 #=============================================================================
 # Target rules for targets named PLATFORMIO_REBUILD_PROJECT_INDEX
@@ -189,19 +202,6 @@ PLATFORMIO_TEST/fast:
 .PHONY : PLATFORMIO_TEST/fast
 
 #=============================================================================
-# Target rules for targets named PlatformIO2
-
-# Build rule for target.
-PlatformIO2: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 PlatformIO2
-.PHONY : PlatformIO2
-
-# fast build rule for target.
-PlatformIO2/fast:
-	$(MAKE) -f CMakeFiles/PlatformIO2.dir/build.make CMakeFiles/PlatformIO2.dir/build
-.PHONY : PlatformIO2/fast
-
-#=============================================================================
 # Target rules for targets named PLATFORMIO_CLEAN
 
 # Build rule for target.
@@ -233,7 +233,7 @@ src/Me1Wire.o: src/Me1Wire.cpp.o
 
 # target to build an object file
 src/Me1Wire.cpp.o:
-	$(MAKE) -f CMakeFiles/PlatformIO2.dir/build.make CMakeFiles/PlatformIO2.dir/src/Me1Wire.cpp.o
+	$(MAKE) -f CMakeFiles/pio_clion.dir/build.make CMakeFiles/pio_clion.dir/src/Me1Wire.cpp.o
 .PHONY : src/Me1Wire.cpp.o
 
 src/Me1Wire.i: src/Me1Wire.cpp.i
@@ -242,7 +242,7 @@ src/Me1Wire.i: src/Me1Wire.cpp.i
 
 # target to preprocess a source file
 src/Me1Wire.cpp.i:
-	$(MAKE) -f CMakeFiles/PlatformIO2.dir/build.make CMakeFiles/PlatformIO2.dir/src/Me1Wire.cpp.i
+	$(MAKE) -f CMakeFiles/pio_clion.dir/build.make CMakeFiles/pio_clion.dir/src/Me1Wire.cpp.i
 .PHONY : src/Me1Wire.cpp.i
 
 src/Me1Wire.s: src/Me1Wire.cpp.s
@@ -251,8 +251,62 @@ src/Me1Wire.s: src/Me1Wire.cpp.s
 
 # target to generate assembly for a file
 src/Me1Wire.cpp.s:
-	$(MAKE) -f CMakeFiles/PlatformIO2.dir/build.make CMakeFiles/PlatformIO2.dir/src/Me1Wire.cpp.s
+	$(MAKE) -f CMakeFiles/pio_clion.dir/build.make CMakeFiles/pio_clion.dir/src/Me1Wire.cpp.s
 .PHONY : src/Me1Wire.cpp.s
+
+src/Me2Buzzer.o: src/Me2Buzzer.cpp.o
+
+.PHONY : src/Me2Buzzer.o
+
+# target to build an object file
+src/Me2Buzzer.cpp.o:
+	$(MAKE) -f CMakeFiles/pio_clion.dir/build.make CMakeFiles/pio_clion.dir/src/Me2Buzzer.cpp.o
+.PHONY : src/Me2Buzzer.cpp.o
+
+src/Me2Buzzer.i: src/Me2Buzzer.cpp.i
+
+.PHONY : src/Me2Buzzer.i
+
+# target to preprocess a source file
+src/Me2Buzzer.cpp.i:
+	$(MAKE) -f CMakeFiles/pio_clion.dir/build.make CMakeFiles/pio_clion.dir/src/Me2Buzzer.cpp.i
+.PHONY : src/Me2Buzzer.cpp.i
+
+src/Me2Buzzer.s: src/Me2Buzzer.cpp.s
+
+.PHONY : src/Me2Buzzer.s
+
+# target to generate assembly for a file
+src/Me2Buzzer.cpp.s:
+	$(MAKE) -f CMakeFiles/pio_clion.dir/build.make CMakeFiles/pio_clion.dir/src/Me2Buzzer.cpp.s
+.PHONY : src/Me2Buzzer.cpp.s
+
+src/Me2Motor.o: src/Me2Motor.cpp.o
+
+.PHONY : src/Me2Motor.o
+
+# target to build an object file
+src/Me2Motor.cpp.o:
+	$(MAKE) -f CMakeFiles/pio_clion.dir/build.make CMakeFiles/pio_clion.dir/src/Me2Motor.cpp.o
+.PHONY : src/Me2Motor.cpp.o
+
+src/Me2Motor.i: src/Me2Motor.cpp.i
+
+.PHONY : src/Me2Motor.i
+
+# target to preprocess a source file
+src/Me2Motor.cpp.i:
+	$(MAKE) -f CMakeFiles/pio_clion.dir/build.make CMakeFiles/pio_clion.dir/src/Me2Motor.cpp.i
+.PHONY : src/Me2Motor.cpp.i
+
+src/Me2Motor.s: src/Me2Motor.cpp.s
+
+.PHONY : src/Me2Motor.s
+
+# target to generate assembly for a file
+src/Me2Motor.cpp.s:
+	$(MAKE) -f CMakeFiles/pio_clion.dir/build.make CMakeFiles/pio_clion.dir/src/Me2Motor.cpp.s
+.PHONY : src/Me2Motor.cpp.s
 
 src/Me7SegmentDisplay.o: src/Me7SegmentDisplay.cpp.o
 
@@ -260,7 +314,7 @@ src/Me7SegmentDisplay.o: src/Me7SegmentDisplay.cpp.o
 
 # target to build an object file
 src/Me7SegmentDisplay.cpp.o:
-	$(MAKE) -f CMakeFiles/PlatformIO2.dir/build.make CMakeFiles/PlatformIO2.dir/src/Me7SegmentDisplay.cpp.o
+	$(MAKE) -f CMakeFiles/pio_clion.dir/build.make CMakeFiles/pio_clion.dir/src/Me7SegmentDisplay.cpp.o
 .PHONY : src/Me7SegmentDisplay.cpp.o
 
 src/Me7SegmentDisplay.i: src/Me7SegmentDisplay.cpp.i
@@ -269,7 +323,7 @@ src/Me7SegmentDisplay.i: src/Me7SegmentDisplay.cpp.i
 
 # target to preprocess a source file
 src/Me7SegmentDisplay.cpp.i:
-	$(MAKE) -f CMakeFiles/PlatformIO2.dir/build.make CMakeFiles/PlatformIO2.dir/src/Me7SegmentDisplay.cpp.i
+	$(MAKE) -f CMakeFiles/pio_clion.dir/build.make CMakeFiles/pio_clion.dir/src/Me7SegmentDisplay.cpp.i
 .PHONY : src/Me7SegmentDisplay.cpp.i
 
 src/Me7SegmentDisplay.s: src/Me7SegmentDisplay.cpp.s
@@ -278,7 +332,7 @@ src/Me7SegmentDisplay.s: src/Me7SegmentDisplay.cpp.s
 
 # target to generate assembly for a file
 src/Me7SegmentDisplay.cpp.s:
-	$(MAKE) -f CMakeFiles/PlatformIO2.dir/build.make CMakeFiles/PlatformIO2.dir/src/Me7SegmentDisplay.cpp.s
+	$(MAKE) -f CMakeFiles/pio_clion.dir/build.make CMakeFiles/pio_clion.dir/src/Me7SegmentDisplay.cpp.s
 .PHONY : src/Me7SegmentDisplay.cpp.s
 
 src/MeBuzzer.o: src/MeBuzzer.cpp.o
@@ -287,7 +341,7 @@ src/MeBuzzer.o: src/MeBuzzer.cpp.o
 
 # target to build an object file
 src/MeBuzzer.cpp.o:
-	$(MAKE) -f CMakeFiles/PlatformIO2.dir/build.make CMakeFiles/PlatformIO2.dir/src/MeBuzzer.cpp.o
+	$(MAKE) -f CMakeFiles/pio_clion.dir/build.make CMakeFiles/pio_clion.dir/src/MeBuzzer.cpp.o
 .PHONY : src/MeBuzzer.cpp.o
 
 src/MeBuzzer.i: src/MeBuzzer.cpp.i
@@ -296,7 +350,7 @@ src/MeBuzzer.i: src/MeBuzzer.cpp.i
 
 # target to preprocess a source file
 src/MeBuzzer.cpp.i:
-	$(MAKE) -f CMakeFiles/PlatformIO2.dir/build.make CMakeFiles/PlatformIO2.dir/src/MeBuzzer.cpp.i
+	$(MAKE) -f CMakeFiles/pio_clion.dir/build.make CMakeFiles/pio_clion.dir/src/MeBuzzer.cpp.i
 .PHONY : src/MeBuzzer.cpp.i
 
 src/MeBuzzer.s: src/MeBuzzer.cpp.s
@@ -305,7 +359,7 @@ src/MeBuzzer.s: src/MeBuzzer.cpp.s
 
 # target to generate assembly for a file
 src/MeBuzzer.cpp.s:
-	$(MAKE) -f CMakeFiles/PlatformIO2.dir/build.make CMakeFiles/PlatformIO2.dir/src/MeBuzzer.cpp.s
+	$(MAKE) -f CMakeFiles/pio_clion.dir/build.make CMakeFiles/pio_clion.dir/src/MeBuzzer.cpp.s
 .PHONY : src/MeBuzzer.cpp.s
 
 src/MeDCMotor.o: src/MeDCMotor.cpp.o
@@ -314,7 +368,7 @@ src/MeDCMotor.o: src/MeDCMotor.cpp.o
 
 # target to build an object file
 src/MeDCMotor.cpp.o:
-	$(MAKE) -f CMakeFiles/PlatformIO2.dir/build.make CMakeFiles/PlatformIO2.dir/src/MeDCMotor.cpp.o
+	$(MAKE) -f CMakeFiles/pio_clion.dir/build.make CMakeFiles/pio_clion.dir/src/MeDCMotor.cpp.o
 .PHONY : src/MeDCMotor.cpp.o
 
 src/MeDCMotor.i: src/MeDCMotor.cpp.i
@@ -323,7 +377,7 @@ src/MeDCMotor.i: src/MeDCMotor.cpp.i
 
 # target to preprocess a source file
 src/MeDCMotor.cpp.i:
-	$(MAKE) -f CMakeFiles/PlatformIO2.dir/build.make CMakeFiles/PlatformIO2.dir/src/MeDCMotor.cpp.i
+	$(MAKE) -f CMakeFiles/pio_clion.dir/build.make CMakeFiles/pio_clion.dir/src/MeDCMotor.cpp.i
 .PHONY : src/MeDCMotor.cpp.i
 
 src/MeDCMotor.s: src/MeDCMotor.cpp.s
@@ -332,8 +386,35 @@ src/MeDCMotor.s: src/MeDCMotor.cpp.s
 
 # target to generate assembly for a file
 src/MeDCMotor.cpp.s:
-	$(MAKE) -f CMakeFiles/PlatformIO2.dir/build.make CMakeFiles/PlatformIO2.dir/src/MeDCMotor.cpp.s
+	$(MAKE) -f CMakeFiles/pio_clion.dir/build.make CMakeFiles/pio_clion.dir/src/MeDCMotor.cpp.s
 .PHONY : src/MeDCMotor.cpp.s
+
+src/MeDefaultPrograms.o: src/MeDefaultPrograms.cpp.o
+
+.PHONY : src/MeDefaultPrograms.o
+
+# target to build an object file
+src/MeDefaultPrograms.cpp.o:
+	$(MAKE) -f CMakeFiles/pio_clion.dir/build.make CMakeFiles/pio_clion.dir/src/MeDefaultPrograms.cpp.o
+.PHONY : src/MeDefaultPrograms.cpp.o
+
+src/MeDefaultPrograms.i: src/MeDefaultPrograms.cpp.i
+
+.PHONY : src/MeDefaultPrograms.i
+
+# target to preprocess a source file
+src/MeDefaultPrograms.cpp.i:
+	$(MAKE) -f CMakeFiles/pio_clion.dir/build.make CMakeFiles/pio_clion.dir/src/MeDefaultPrograms.cpp.i
+.PHONY : src/MeDefaultPrograms.cpp.i
+
+src/MeDefaultPrograms.s: src/MeDefaultPrograms.cpp.s
+
+.PHONY : src/MeDefaultPrograms.s
+
+# target to generate assembly for a file
+src/MeDefaultPrograms.cpp.s:
+	$(MAKE) -f CMakeFiles/pio_clion.dir/build.make CMakeFiles/pio_clion.dir/src/MeDefaultPrograms.cpp.s
+.PHONY : src/MeDefaultPrograms.cpp.s
 
 src/MeIR.o: src/MeIR.cpp.o
 
@@ -341,7 +422,7 @@ src/MeIR.o: src/MeIR.cpp.o
 
 # target to build an object file
 src/MeIR.cpp.o:
-	$(MAKE) -f CMakeFiles/PlatformIO2.dir/build.make CMakeFiles/PlatformIO2.dir/src/MeIR.cpp.o
+	$(MAKE) -f CMakeFiles/pio_clion.dir/build.make CMakeFiles/pio_clion.dir/src/MeIR.cpp.o
 .PHONY : src/MeIR.cpp.o
 
 src/MeIR.i: src/MeIR.cpp.i
@@ -350,7 +431,7 @@ src/MeIR.i: src/MeIR.cpp.i
 
 # target to preprocess a source file
 src/MeIR.cpp.i:
-	$(MAKE) -f CMakeFiles/PlatformIO2.dir/build.make CMakeFiles/PlatformIO2.dir/src/MeIR.cpp.i
+	$(MAKE) -f CMakeFiles/pio_clion.dir/build.make CMakeFiles/pio_clion.dir/src/MeIR.cpp.i
 .PHONY : src/MeIR.cpp.i
 
 src/MeIR.s: src/MeIR.cpp.s
@@ -359,7 +440,7 @@ src/MeIR.s: src/MeIR.cpp.s
 
 # target to generate assembly for a file
 src/MeIR.cpp.s:
-	$(MAKE) -f CMakeFiles/PlatformIO2.dir/build.make CMakeFiles/PlatformIO2.dir/src/MeIR.cpp.s
+	$(MAKE) -f CMakeFiles/pio_clion.dir/build.make CMakeFiles/pio_clion.dir/src/MeIR.cpp.s
 .PHONY : src/MeIR.cpp.s
 
 src/MeInfraredReceiver.o: src/MeInfraredReceiver.cpp.o
@@ -368,7 +449,7 @@ src/MeInfraredReceiver.o: src/MeInfraredReceiver.cpp.o
 
 # target to build an object file
 src/MeInfraredReceiver.cpp.o:
-	$(MAKE) -f CMakeFiles/PlatformIO2.dir/build.make CMakeFiles/PlatformIO2.dir/src/MeInfraredReceiver.cpp.o
+	$(MAKE) -f CMakeFiles/pio_clion.dir/build.make CMakeFiles/pio_clion.dir/src/MeInfraredReceiver.cpp.o
 .PHONY : src/MeInfraredReceiver.cpp.o
 
 src/MeInfraredReceiver.i: src/MeInfraredReceiver.cpp.i
@@ -377,7 +458,7 @@ src/MeInfraredReceiver.i: src/MeInfraredReceiver.cpp.i
 
 # target to preprocess a source file
 src/MeInfraredReceiver.cpp.i:
-	$(MAKE) -f CMakeFiles/PlatformIO2.dir/build.make CMakeFiles/PlatformIO2.dir/src/MeInfraredReceiver.cpp.i
+	$(MAKE) -f CMakeFiles/pio_clion.dir/build.make CMakeFiles/pio_clion.dir/src/MeInfraredReceiver.cpp.i
 .PHONY : src/MeInfraredReceiver.cpp.i
 
 src/MeInfraredReceiver.s: src/MeInfraredReceiver.cpp.s
@@ -386,7 +467,7 @@ src/MeInfraredReceiver.s: src/MeInfraredReceiver.cpp.s
 
 # target to generate assembly for a file
 src/MeInfraredReceiver.cpp.s:
-	$(MAKE) -f CMakeFiles/PlatformIO2.dir/build.make CMakeFiles/PlatformIO2.dir/src/MeInfraredReceiver.cpp.s
+	$(MAKE) -f CMakeFiles/pio_clion.dir/build.make CMakeFiles/pio_clion.dir/src/MeInfraredReceiver.cpp.s
 .PHONY : src/MeInfraredReceiver.cpp.s
 
 src/MeLEDMatrix.o: src/MeLEDMatrix.cpp.o
@@ -395,7 +476,7 @@ src/MeLEDMatrix.o: src/MeLEDMatrix.cpp.o
 
 # target to build an object file
 src/MeLEDMatrix.cpp.o:
-	$(MAKE) -f CMakeFiles/PlatformIO2.dir/build.make CMakeFiles/PlatformIO2.dir/src/MeLEDMatrix.cpp.o
+	$(MAKE) -f CMakeFiles/pio_clion.dir/build.make CMakeFiles/pio_clion.dir/src/MeLEDMatrix.cpp.o
 .PHONY : src/MeLEDMatrix.cpp.o
 
 src/MeLEDMatrix.i: src/MeLEDMatrix.cpp.i
@@ -404,7 +485,7 @@ src/MeLEDMatrix.i: src/MeLEDMatrix.cpp.i
 
 # target to preprocess a source file
 src/MeLEDMatrix.cpp.i:
-	$(MAKE) -f CMakeFiles/PlatformIO2.dir/build.make CMakeFiles/PlatformIO2.dir/src/MeLEDMatrix.cpp.i
+	$(MAKE) -f CMakeFiles/pio_clion.dir/build.make CMakeFiles/pio_clion.dir/src/MeLEDMatrix.cpp.i
 .PHONY : src/MeLEDMatrix.cpp.i
 
 src/MeLEDMatrix.s: src/MeLEDMatrix.cpp.s
@@ -413,7 +494,7 @@ src/MeLEDMatrix.s: src/MeLEDMatrix.cpp.s
 
 # target to generate assembly for a file
 src/MeLEDMatrix.cpp.s:
-	$(MAKE) -f CMakeFiles/PlatformIO2.dir/build.make CMakeFiles/PlatformIO2.dir/src/MeLEDMatrix.cpp.s
+	$(MAKE) -f CMakeFiles/pio_clion.dir/build.make CMakeFiles/pio_clion.dir/src/MeLEDMatrix.cpp.s
 .PHONY : src/MeLEDMatrix.cpp.s
 
 src/MeLineFollower.o: src/MeLineFollower.cpp.o
@@ -422,7 +503,7 @@ src/MeLineFollower.o: src/MeLineFollower.cpp.o
 
 # target to build an object file
 src/MeLineFollower.cpp.o:
-	$(MAKE) -f CMakeFiles/PlatformIO2.dir/build.make CMakeFiles/PlatformIO2.dir/src/MeLineFollower.cpp.o
+	$(MAKE) -f CMakeFiles/pio_clion.dir/build.make CMakeFiles/pio_clion.dir/src/MeLineFollower.cpp.o
 .PHONY : src/MeLineFollower.cpp.o
 
 src/MeLineFollower.i: src/MeLineFollower.cpp.i
@@ -431,7 +512,7 @@ src/MeLineFollower.i: src/MeLineFollower.cpp.i
 
 # target to preprocess a source file
 src/MeLineFollower.cpp.i:
-	$(MAKE) -f CMakeFiles/PlatformIO2.dir/build.make CMakeFiles/PlatformIO2.dir/src/MeLineFollower.cpp.i
+	$(MAKE) -f CMakeFiles/pio_clion.dir/build.make CMakeFiles/pio_clion.dir/src/MeLineFollower.cpp.i
 .PHONY : src/MeLineFollower.cpp.i
 
 src/MeLineFollower.s: src/MeLineFollower.cpp.s
@@ -440,7 +521,7 @@ src/MeLineFollower.s: src/MeLineFollower.cpp.s
 
 # target to generate assembly for a file
 src/MeLineFollower.cpp.s:
-	$(MAKE) -f CMakeFiles/PlatformIO2.dir/build.make CMakeFiles/PlatformIO2.dir/src/MeLineFollower.cpp.s
+	$(MAKE) -f CMakeFiles/pio_clion.dir/build.make CMakeFiles/pio_clion.dir/src/MeLineFollower.cpp.s
 .PHONY : src/MeLineFollower.cpp.s
 
 src/MePort.o: src/MePort.cpp.o
@@ -449,7 +530,7 @@ src/MePort.o: src/MePort.cpp.o
 
 # target to build an object file
 src/MePort.cpp.o:
-	$(MAKE) -f CMakeFiles/PlatformIO2.dir/build.make CMakeFiles/PlatformIO2.dir/src/MePort.cpp.o
+	$(MAKE) -f CMakeFiles/pio_clion.dir/build.make CMakeFiles/pio_clion.dir/src/MePort.cpp.o
 .PHONY : src/MePort.cpp.o
 
 src/MePort.i: src/MePort.cpp.i
@@ -458,7 +539,7 @@ src/MePort.i: src/MePort.cpp.i
 
 # target to preprocess a source file
 src/MePort.cpp.i:
-	$(MAKE) -f CMakeFiles/PlatformIO2.dir/build.make CMakeFiles/PlatformIO2.dir/src/MePort.cpp.i
+	$(MAKE) -f CMakeFiles/pio_clion.dir/build.make CMakeFiles/pio_clion.dir/src/MePort.cpp.i
 .PHONY : src/MePort.cpp.i
 
 src/MePort.s: src/MePort.cpp.s
@@ -467,7 +548,7 @@ src/MePort.s: src/MePort.cpp.s
 
 # target to generate assembly for a file
 src/MePort.cpp.s:
-	$(MAKE) -f CMakeFiles/PlatformIO2.dir/build.make CMakeFiles/PlatformIO2.dir/src/MePort.cpp.s
+	$(MAKE) -f CMakeFiles/pio_clion.dir/build.make CMakeFiles/pio_clion.dir/src/MePort.cpp.s
 .PHONY : src/MePort.cpp.s
 
 src/MeRGBLed.o: src/MeRGBLed.cpp.o
@@ -476,7 +557,7 @@ src/MeRGBLed.o: src/MeRGBLed.cpp.o
 
 # target to build an object file
 src/MeRGBLed.cpp.o:
-	$(MAKE) -f CMakeFiles/PlatformIO2.dir/build.make CMakeFiles/PlatformIO2.dir/src/MeRGBLed.cpp.o
+	$(MAKE) -f CMakeFiles/pio_clion.dir/build.make CMakeFiles/pio_clion.dir/src/MeRGBLed.cpp.o
 .PHONY : src/MeRGBLed.cpp.o
 
 src/MeRGBLed.i: src/MeRGBLed.cpp.i
@@ -485,7 +566,7 @@ src/MeRGBLed.i: src/MeRGBLed.cpp.i
 
 # target to preprocess a source file
 src/MeRGBLed.cpp.i:
-	$(MAKE) -f CMakeFiles/PlatformIO2.dir/build.make CMakeFiles/PlatformIO2.dir/src/MeRGBLed.cpp.i
+	$(MAKE) -f CMakeFiles/pio_clion.dir/build.make CMakeFiles/pio_clion.dir/src/MeRGBLed.cpp.i
 .PHONY : src/MeRGBLed.cpp.i
 
 src/MeRGBLed.s: src/MeRGBLed.cpp.s
@@ -494,7 +575,7 @@ src/MeRGBLed.s: src/MeRGBLed.cpp.s
 
 # target to generate assembly for a file
 src/MeRGBLed.cpp.s:
-	$(MAKE) -f CMakeFiles/PlatformIO2.dir/build.make CMakeFiles/PlatformIO2.dir/src/MeRGBLed.cpp.s
+	$(MAKE) -f CMakeFiles/pio_clion.dir/build.make CMakeFiles/pio_clion.dir/src/MeRGBLed.cpp.s
 .PHONY : src/MeRGBLed.cpp.s
 
 src/MeTemperature.o: src/MeTemperature.cpp.o
@@ -503,7 +584,7 @@ src/MeTemperature.o: src/MeTemperature.cpp.o
 
 # target to build an object file
 src/MeTemperature.cpp.o:
-	$(MAKE) -f CMakeFiles/PlatformIO2.dir/build.make CMakeFiles/PlatformIO2.dir/src/MeTemperature.cpp.o
+	$(MAKE) -f CMakeFiles/pio_clion.dir/build.make CMakeFiles/pio_clion.dir/src/MeTemperature.cpp.o
 .PHONY : src/MeTemperature.cpp.o
 
 src/MeTemperature.i: src/MeTemperature.cpp.i
@@ -512,7 +593,7 @@ src/MeTemperature.i: src/MeTemperature.cpp.i
 
 # target to preprocess a source file
 src/MeTemperature.cpp.i:
-	$(MAKE) -f CMakeFiles/PlatformIO2.dir/build.make CMakeFiles/PlatformIO2.dir/src/MeTemperature.cpp.i
+	$(MAKE) -f CMakeFiles/pio_clion.dir/build.make CMakeFiles/pio_clion.dir/src/MeTemperature.cpp.i
 .PHONY : src/MeTemperature.cpp.i
 
 src/MeTemperature.s: src/MeTemperature.cpp.s
@@ -521,7 +602,7 @@ src/MeTemperature.s: src/MeTemperature.cpp.s
 
 # target to generate assembly for a file
 src/MeTemperature.cpp.s:
-	$(MAKE) -f CMakeFiles/PlatformIO2.dir/build.make CMakeFiles/PlatformIO2.dir/src/MeTemperature.cpp.s
+	$(MAKE) -f CMakeFiles/pio_clion.dir/build.make CMakeFiles/pio_clion.dir/src/MeTemperature.cpp.s
 .PHONY : src/MeTemperature.cpp.s
 
 src/MeUltrasonic.o: src/MeUltrasonic.cpp.o
@@ -530,7 +611,7 @@ src/MeUltrasonic.o: src/MeUltrasonic.cpp.o
 
 # target to build an object file
 src/MeUltrasonic.cpp.o:
-	$(MAKE) -f CMakeFiles/PlatformIO2.dir/build.make CMakeFiles/PlatformIO2.dir/src/MeUltrasonic.cpp.o
+	$(MAKE) -f CMakeFiles/pio_clion.dir/build.make CMakeFiles/pio_clion.dir/src/MeUltrasonic.cpp.o
 .PHONY : src/MeUltrasonic.cpp.o
 
 src/MeUltrasonic.i: src/MeUltrasonic.cpp.i
@@ -539,7 +620,7 @@ src/MeUltrasonic.i: src/MeUltrasonic.cpp.i
 
 # target to preprocess a source file
 src/MeUltrasonic.cpp.i:
-	$(MAKE) -f CMakeFiles/PlatformIO2.dir/build.make CMakeFiles/PlatformIO2.dir/src/MeUltrasonic.cpp.i
+	$(MAKE) -f CMakeFiles/pio_clion.dir/build.make CMakeFiles/pio_clion.dir/src/MeUltrasonic.cpp.i
 .PHONY : src/MeUltrasonic.cpp.i
 
 src/MeUltrasonic.s: src/MeUltrasonic.cpp.s
@@ -548,7 +629,7 @@ src/MeUltrasonic.s: src/MeUltrasonic.cpp.s
 
 # target to generate assembly for a file
 src/MeUltrasonic.cpp.s:
-	$(MAKE) -f CMakeFiles/PlatformIO2.dir/build.make CMakeFiles/PlatformIO2.dir/src/MeUltrasonic.cpp.s
+	$(MAKE) -f CMakeFiles/pio_clion.dir/build.make CMakeFiles/pio_clion.dir/src/MeUltrasonic.cpp.s
 .PHONY : src/MeUltrasonic.cpp.s
 
 # Help Target
@@ -558,6 +639,7 @@ help:
 	@echo "... clean"
 	@echo "... depend"
 	@echo "... rebuild_cache"
+	@echo "... pio_clion"
 	@echo "... PLATFORMIO_REBUILD_PROJECT_INDEX"
 	@echo "... PLATFORMIO_UPDATE_ALL"
 	@echo "... PLATFORMIO_UPLOADFS"
@@ -565,12 +647,17 @@ help:
 	@echo "... PLATFORMIO_PROGRAM"
 	@echo "... PLATFORMIO_TEST"
 	@echo "... edit_cache"
-	@echo "... PlatformIO2"
 	@echo "... PLATFORMIO_CLEAN"
 	@echo "... PLATFORMIO_UPLOAD"
 	@echo "... src/Me1Wire.o"
 	@echo "... src/Me1Wire.i"
 	@echo "... src/Me1Wire.s"
+	@echo "... src/Me2Buzzer.o"
+	@echo "... src/Me2Buzzer.i"
+	@echo "... src/Me2Buzzer.s"
+	@echo "... src/Me2Motor.o"
+	@echo "... src/Me2Motor.i"
+	@echo "... src/Me2Motor.s"
 	@echo "... src/Me7SegmentDisplay.o"
 	@echo "... src/Me7SegmentDisplay.i"
 	@echo "... src/Me7SegmentDisplay.s"
@@ -580,6 +667,9 @@ help:
 	@echo "... src/MeDCMotor.o"
 	@echo "... src/MeDCMotor.i"
 	@echo "... src/MeDCMotor.s"
+	@echo "... src/MeDefaultPrograms.o"
+	@echo "... src/MeDefaultPrograms.i"
+	@echo "... src/MeDefaultPrograms.s"
 	@echo "... src/MeIR.o"
 	@echo "... src/MeIR.i"
 	@echo "... src/MeIR.s"

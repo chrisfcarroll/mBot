@@ -43,10 +43,10 @@ RM = "/Users/chris/Library/Application Support/JetBrains/Toolbox/apps/CLion/ch-0
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /Users/chris/Source/Scratch/PlatformIO2
+CMAKE_SOURCE_DIR = "/Users/chris/Source/Repos/mBot PlatformIO/pio_clion"
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /Users/chris/Source/Scratch/PlatformIO2/cmake-build-debug
+CMAKE_BINARY_DIR = "/Users/chris/Source/Repos/mBot PlatformIO/pio_clion/cmake-build-debug"
 
 # Utility rule file for PLATFORMIO_UPLOAD.
 
@@ -54,7 +54,7 @@ CMAKE_BINARY_DIR = /Users/chris/Source/Scratch/PlatformIO2/cmake-build-debug
 include CMakeFiles/PLATFORMIO_UPLOAD.dir/progress.make
 
 CMakeFiles/PLATFORMIO_UPLOAD:
-	cd /Users/chris/Source/Scratch/PlatformIO2 && /Users/chris/.platformio/penv/bin/platformio -f -c clion run --target upload
+	cd "/Users/chris/Source/Repos/mBot PlatformIO/pio_clion" && /Users/chris/.platformio/penv/bin/platformio -f -c clion run --target upload
 
 PLATFORMIO_UPLOAD: CMakeFiles/PLATFORMIO_UPLOAD
 PLATFORMIO_UPLOAD: CMakeFiles/PLATFORMIO_UPLOAD.dir/build.make
@@ -71,6 +71,6 @@ CMakeFiles/PLATFORMIO_UPLOAD.dir/clean:
 .PHONY : CMakeFiles/PLATFORMIO_UPLOAD.dir/clean
 
 CMakeFiles/PLATFORMIO_UPLOAD.dir/depend:
-	cd /Users/chris/Source/Scratch/PlatformIO2/cmake-build-debug && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /Users/chris/Source/Scratch/PlatformIO2 /Users/chris/Source/Scratch/PlatformIO2 /Users/chris/Source/Scratch/PlatformIO2/cmake-build-debug /Users/chris/Source/Scratch/PlatformIO2/cmake-build-debug /Users/chris/Source/Scratch/PlatformIO2/cmake-build-debug/CMakeFiles/PLATFORMIO_UPLOAD.dir/DependInfo.cmake --color=$(COLOR)
+	cd "/Users/chris/Source/Repos/mBot PlatformIO/pio_clion/cmake-build-debug" && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" "/Users/chris/Source/Repos/mBot PlatformIO/pio_clion" "/Users/chris/Source/Repos/mBot PlatformIO/pio_clion" "/Users/chris/Source/Repos/mBot PlatformIO/pio_clion/cmake-build-debug" "/Users/chris/Source/Repos/mBot PlatformIO/pio_clion/cmake-build-debug" "/Users/chris/Source/Repos/mBot PlatformIO/pio_clion/cmake-build-debug/CMakeFiles/PLATFORMIO_UPLOAD.dir/DependInfo.cmake" --color=$(COLOR)
 .PHONY : CMakeFiles/PLATFORMIO_UPLOAD.dir/depend
 

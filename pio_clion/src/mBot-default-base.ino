@@ -2,13 +2,57 @@
 #include <Wire.h>
 #include <SoftwareSerial.h>
 #include "mCore.h"
+#include "Me2Buzzer.h"
+#include "MeDefaultPrograms.h"
+#include "Me2MotorControl.h"
 
-MeRGBLed rgb;
-MeUltrasonic ultr(PORT_3);
-MeLineFollower line(PORT_2);
-MeLEDMatrix ledMx;
-MeIR ir;
 MeBuzzer buzzer;
+MeLEDMatrix ledMx;
+MeRGBLed rgb;
+ProgramMode programMode;
+
+void FlashAndBeepStartupPattern();
+void process_ir_command(Me2Motor::MotorState motorState);
+void serialHandle();
+void parseData();
+boolean isStart = false;
+
+Me2Motor::MotorState motorState;
+MeIR ir;
+MeUltrasonic ultrasonicSensor(PORT_3);
+MeLineFollower lineFollower(PORT_2);
+
+void setup()
+{
+    Me2Motor::Stop();
+    FlashAndBeepStartupPattern();
+
+    injectDefaultProgramDependencies(motorState, ultrasonicSensor, ir, lineFollower);
+    Serial.begin(115200);
+    ir.begin();
+}
+
+void loop()
+{
+    while(1)
+    {
+        process_ir_command(motorState);
+        serialHandle();
+        switch (programMode)
+        {
+            case MODE_A:
+                modeA();
+                break;
+            case MODE_B:
+                modeB();
+                break;
+            case MODE_C:
+                modeC();
+                break;
+        }
+    }
+}
+
 MeTemperature ts;
 Me7SegmentDisplay seg;
 
@@ -17,45 +61,7 @@ MeDCMotor MotorR(M2);
 MePort generalDevice;
 Servo servo;
 
-int moveSpeed = 200;
-int minSpeed = 48;
-int factor = 23;
 
-#define NTD1 294
-#define NTD2 330
-#define NTD3 350
-#define NTD4 393
-#define NTD5 441
-#define NTD6 495
-#define NTD7 556
-#define NTDL1 147
-#define NTDL2 165
-#define NTDL3 175
-#define NTDL4 196
-#define NTDL5 221
-#define NTDL6 248
-#define NTDL7 278
-#define NTDH1 589
-#define NTDH2 661
-#define NTDH3 700
-#define NTDH4 786
-#define NTDH5 882
-#define NTDH6 990
-#define NTDH7 112
-
-
-#define RUN_F 0x01
-#define RUN_B 0x01<<1
-#define RUN_L 0x01<<2
-#define RUN_R 0x01<<3
-#define STOP 0
-uint8_t motor_sta = STOP;
-enum
-{
-  MODE_A,
-  MODE_B,
-  MODE_C
-};
 
 typedef struct MeModule
 {
@@ -85,7 +91,6 @@ union{
 
 MeModule modules[12];
 int analogs[8]={A0,A1,A2,A3,A4,A5,A6,A7};
-uint8_t mode = MODE_A;
 
 boolean isAvailable = false;
 int len = 52;
@@ -94,7 +99,6 @@ char bufferBt[52];
 byte index = 0;
 byte dataLen;
 byte modulesLen=0;
-boolean isStart = false;
 char serialRead;
 String mVersion = "1.2.103";
 float angleServo = 90.0;
@@ -102,7 +106,6 @@ unsigned char prevc=0;
 boolean buttonPressed = false;
 double lastTime = 0.0;
 double currentTime = 0.0;
-int LineFollowFlag=0;
 
 #define VERSION 0
 #define ULTRASONIC_SENSOR 1
@@ -141,25 +144,8 @@ int LineFollowFlag=0;
 #define START 5
 
 
-void setup()
-{
-  Stop();
-  rgb.setNumber(16);
-  rgb.clear();
-  rgb.setColor(10, 0, 0);
-  buzzer.tone(NTD1, 300); 
-  delay(100);
-  rgb.setColor(0, 20, 0);
-  buzzer.tone(NTD2, 300);
-  delay(400);
-  rgb.setColor(0, 0, 10);
-  buzzer.tone(NTD3, 300);
-  delay(100);
-  rgb.clear();
-  Serial.begin(115200);
-  buzzer.noTone();
-  ir.begin(); 
-}
+
+
 unsigned char readBuffer(int index){
  return buffer[index]; 
 }
@@ -216,28 +202,8 @@ void serialHandle(){
   }
 }
             int px = 0;
-void loop()
-{
-  while(1)
-  {
-    get_ir_command();
-    serialHandle();
-    switch (mode)
-    {
-      case MODE_A:
-        modeA();
-        break;
-      case MODE_B:
-        modeB();
-        break;
-      case MODE_C:
-        modeC();
-        break;
-    }
-  }
-}
 
-void get_ir_command()
+void process_ir_command(Me2Motor::MotorState motorState)
 {
   static long time = millis();
   if (ir.decode())
@@ -247,261 +213,93 @@ void get_ir_command()
     switch (value >> 16 & 0xff)
     {
       case IR_BUTTON_A:
-        moveSpeed = 220;
-        mode = MODE_A;
-        Stop();
+        motorState.moveSpeed = 220;
+        programMode = MODE_A;
+        Me2Motor::Stop();
         buzzer.tone(NTD1, 300); 
         rgb.clear();
         rgb.setColor(10, 10, 10);
         break;
       case IR_BUTTON_B:
-        moveSpeed = 200;
-        mode = MODE_B;
-        Stop();
+        motorState.moveSpeed = 200;
+        programMode = MODE_B;
+        Me2Motor::Stop();
         buzzer.tone(NTD2, 300); 
         rgb.clear();
         rgb.setColor(0, 10, 0);
         break;
       case IR_BUTTON_C:
-        mode = MODE_C;
-        moveSpeed = 120;
-        Stop();
+        programMode = MODE_C;
+        motorState.moveSpeed = 120;
+        Me2Motor::Stop();
         buzzer.tone(NTD3, 300); 
         rgb.clear();
         rgb.setColor(0, 0, 10);
         break;
       case IR_BUTTON_PLUS:
-        motor_sta = RUN_F;
+        motorState.current = RUN_F;
         //buzzer.tone(NTD4, 300); 
         rgb.clear();
         rgb.setColor(10, 10, 0);
-        //               Forward();
+        Me2Motor::Forward(motorState);
         break;
       case IR_BUTTON_MINUS:
-        motor_sta = RUN_B;
+        motorState.current = RUN_B;
         rgb.clear();
         rgb.setColor(10, 0, 0);
-        //buzzer.tone(NTD4, 300); 
-        //               Backward();
+        //buzzer.tone(NTD4, 300);
+        Me2Motor::Backward(motorState);
         break;
       case IR_BUTTON_NEXT:
-        motor_sta = RUN_R;
+        motorState.current = RUN_R;
         //buzzer.tone(NTD4, 300); 
         rgb.clear();
         rgb.setColor(1,10, 10, 0);
-        //               TurnRight();
+        Me2Motor::TurnRight(motorState);
         break;
       case IR_BUTTON_PREVIOUS:
-        motor_sta = RUN_L;
+        motorState.current = RUN_L;
         //buzzer.tone(NTD4, 300); 
         rgb.clear();
         rgb.setColor(2,10, 10, 0);
-        //               TurnLeft();
+        Me2Motor::TurnLeft(motorState);
         break;
       case IR_BUTTON_9:
-        buzzer.tone(NTDH2, 300); 
-        delay(300);
-        ChangeSpeed(factor * 9 + minSpeed);
+        ChangeSpeed(motorState, 9);
         break;
       case IR_BUTTON_8:
-        buzzer.tone(NTDH1, 300); 
-        delay(300);
-        ChangeSpeed(factor * 8 + minSpeed);
+        ChangeSpeed(motorState, 8);
         break;
       case IR_BUTTON_7:
-        buzzer.tone(NTD7, 300); 
-        delay(300);
-        ChangeSpeed(factor * 7 + minSpeed);
+        ChangeSpeed(motorState, 7);
         break;
       case IR_BUTTON_6:
-        buzzer.tone(NTD6, 300); 
-        delay(300);
-        ChangeSpeed(factor * 6 + minSpeed);
+        ChangeSpeed(motorState, 6);
         break;
       case IR_BUTTON_5:
-        buzzer.tone(NTD5, 300); 
-        delay(300);
-        ChangeSpeed(factor * 5 + minSpeed);
+        ChangeSpeed(motorState, 5);
         break;
       case IR_BUTTON_4:
-        buzzer.tone(NTD4, 300); 
-        delay(300);
-        ChangeSpeed(factor * 4 + minSpeed);
+        ChangeSpeed(motorState, 4);
         break;
       case IR_BUTTON_3:
-        buzzer.tone(NTD3, 300); 
-        delay(300);
-        ChangeSpeed(factor * 3 + minSpeed);
+        ChangeSpeed(motorState, 3);
         break;
       case IR_BUTTON_2:
-        buzzer.tone(NTD2, 300); 
-        delay(300);
-        ChangeSpeed(factor * 2 + minSpeed);
+        ChangeSpeed(motorState,2);
         break;
       case IR_BUTTON_1:
-        buzzer.tone(NTD1, 300); 
-        delay(300);
-        ChangeSpeed(factor * 1 + minSpeed);
+        ChangeSpeed(motorState,1);
         break;
     }
   }
   else if (millis() - time > 120)
   {
-    motor_sta = STOP;
+    motorState.current = STOP;
     time = millis();
   }
 }
-void Forward()
-{
-  MotorL.run(-moveSpeed);
-  MotorR.run(moveSpeed);
-}
-void Backward()
-{
-  MotorL.run(moveSpeed); 
-  MotorR.run(-moveSpeed);
-}
-void TurnLeft()
-{
-  MotorL.run(-moveSpeed/10);
-  MotorR.run(moveSpeed);
-}
-void TurnRight()
-{
-  MotorL.run(-moveSpeed);
-  MotorR.run(moveSpeed/10);
-}
-void Stop()
-{
-  rgb.clear();
-  MotorL.run(0);
-  MotorR.run(0);
-}
-uint8_t prevState = 0;
-void ChangeSpeed(int spd)
-{
-  buzzer.tone(NTD5, 300); 
-  moveSpeed = spd;
-}
 
-void modeA()
-{
-  switch (motor_sta)
-  {
-    case RUN_F:
-      Forward();
-      prevState = motor_sta;
-      break;
-    case RUN_B:
-      Backward();
-      prevState = motor_sta;
-      break;
-    case RUN_L:
-      TurnLeft();
-      prevState = motor_sta;
-      break;
-    case RUN_R:
-      TurnRight();
-      prevState = motor_sta;
-      break;
-    case STOP:
-      if(prevState!=motor_sta){
-        prevState = motor_sta;
-        Stop();
-      }
-      break;
-  }
-
-}
-
-void modeB()
-{
-  uint8_t d = ultr.distanceCm(50);
-  static long time = millis();
-  randomSeed(analogRead(6));
-  uint8_t randNumber = random(2);
-  if (d > 15 || d == 0)Forward();
-  else if (d > 10) {
-    switch (randNumber)
-    {
-      case 0:
-        TurnLeft();
-        delay(200);
-        break;
-      case 1:
-        TurnRight();
-        delay(200);
-        break;
-    }
-  }
-  else
-  {
-    Backward();
-    delay(400);
-  }
-  delay(100);
-}
-
-void modeC()
-{
-  uint8_t val;
-  val = line.readSensors();
-  if(moveSpeed >230)moveSpeed=230;
-  switch (val)
-  {
-    case S1_IN_S2_IN:
-      Forward();
-      LineFollowFlag=10;
-      break;
-
-    case S1_IN_S2_OUT:
-       Forward();
-      if (LineFollowFlag>1) LineFollowFlag--;
-      break;
-
-    case S1_OUT_S2_IN:
-      Forward();
-      if (LineFollowFlag<20) LineFollowFlag++;
-      break;
-
-    case S1_OUT_S2_OUT:
-      if(LineFollowFlag==10) Backward();
-      if(LineFollowFlag<10) TurnLeft();
-      if(LineFollowFlag>10) TurnRight();
-      break;
-  }
-//  delay(50);
-}
-void parseData(){
-  isStart = false;
-  int idx = readBuffer(3);
-  int action = readBuffer(4);
-  int device = readBuffer(5);
-  switch(action){
-    case GET:{
-        writeHead();
-        writeSerial(idx);
-        readSensor(device);
-        writeEnd();
-     }
-     break;
-     case RUN:{
-       runModule(device);
-       callOK();
-     }
-      break;
-      case RESET:{
-        //reset
-        callOK();
-      }
-     break;
-     case START:{
-        //start
-        callOK();
-      }
-     break;
-  }
-}
 void callOK(){
     writeSerial(0xff);
     writeSerial(0x55);
@@ -579,7 +377,7 @@ uint8_t* readUint8(int idx,int len){
   return _receiveUint8;
 }
 void runModule(int device){
-  //0xff 0x55 0x6 0x0 0x2 0x22 0x9 0x0 0x0 0xa 
+  //0xff 0x55 0x6 0x0 0x2 0x22 0x9 0x0 0x0 0xa
   int port = readBuffer(6);
   int pin = port;
   switch(device){
@@ -738,10 +536,10 @@ void readSensor(int device){
   pin = port;
   switch(device){
    case  ULTRASONIC_SENSOR:{
-     if(ultr.getPort()!=port){
-       ultr.reset(port);
+     if(ultrasonicSensor.getPort()!=port){
+       ultrasonicSensor.reset(port);
      }
-     value = (float)ultr.distanceCm(50000);
+     value = (float)ultrasonicSensor.distanceCm(50000);
      sendFloat(value);
    }
    break;
@@ -888,3 +686,50 @@ void readSensor(int device){
    break;
   }
 }
+
+ void parseData() {
+     isStart = false;
+     int idx = readBuffer(3);
+     int action = readBuffer(4);
+     int device = readBuffer(5);
+     switch (action) {
+         case GET: {
+             writeHead();
+             writeSerial(idx);
+             readSensor(device);
+             writeEnd();
+         }
+             break;
+         case RUN: {
+             runModule(device);
+             callOK();
+         }
+             break;
+         case RESET: {
+             //reset
+             callOK();
+         }
+             break;
+         case START: {
+             //start
+             callOK();
+         }
+             break;
+     }
+ }
+
+ void FlashAndBeepStartupPattern() {
+     rgb.setNumber(16);
+     rgb.clear();
+     rgb.setColor(10, 0, 0);
+     buzzer.tone(NTD1, 300);
+     delay(100);
+     rgb.setColor(0, 20, 0);
+     buzzer.tone(NTD2, 300);
+     delay(400);
+     rgb.setColor(0, 0, 10);
+     buzzer.tone(NTD3, 300);
+     delay(100);
+     rgb.clear();
+     buzzer.noTone();
+ }
